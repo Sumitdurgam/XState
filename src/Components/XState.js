@@ -55,7 +55,7 @@ const LocationSelector = () => {
   };
 
   return (
-    <div style={{ alignItems: 'center'}}>
+    <div>
       <h2>Select Location</h2>
 
       {/* Dropdowns in a Single Row */}
@@ -63,7 +63,7 @@ const LocationSelector = () => {
         {/* Country Dropdown */}
         <div> 
           <br />
-          <select value={selectedCountry} onChange={handleCountryChange}>
+          <select data-testid="country-dropdown" value={selectedCountry} onChange={handleCountryChange}>
             <option value="">Select a Country</option>
             {countries.map(country => (
               <option key={country} value={country}>
@@ -77,7 +77,7 @@ const LocationSelector = () => {
         {selectedCountry && (
           <div>
             <br />
-            <select value={selectedState} onChange={handleStateChange} disabled={!selectedCountry}>
+            <select data-testid="state-dropdown" value={selectedState} onChange={handleStateChange} disabled={!selectedCountry}>
               <option value="">Select a State</option>
               {states.map(state => (
                 <option key={state} value={state}>
@@ -92,7 +92,7 @@ const LocationSelector = () => {
         {selectedState && (
           <div>
             <br />
-            <select value={selectedCity} onChange={handleCityChange} disabled={!selectedState}>
+            <select data-testid="city-dropdown" value={selectedCity} onChange={handleCityChange} disabled={!selectedState}>
               <option value="">Select a City</option>
               {cities.map(city => (
                 <option key={city} value={city}>
@@ -107,7 +107,7 @@ const LocationSelector = () => {
       {/* Display Selected Location */}
       {selectedCity && selectedState && selectedCountry && (
         <p>
-          You Selected <strong>{selectedCity}s</strong>, {selectedState}, {selectedCountry}
+          You Selected <strong>{selectedCity}</strong>, {selectedState}, {selectedCountry}
         </p>
       )}
     </div>
