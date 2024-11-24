@@ -1,44 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const LocationSelector = () => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [selectedState, setSelectedState] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
 
   useEffect(() => {
     // Fetch countries on initial render
-    fetch('https://crio-location-selector.onrender.com/countries')
-      .then(response => response.json())
-      .then(data => setCountries(data))
-      .catch(error => console.error('Error fetching countries:', error));
+    fetch("https://crio-location-selector.onrender.com/countries")
+      .then((response) => response.json())
+      .then((data) => setCountries(data))
+      .catch((error) => console.error("Error fetching countries:", error));
   }, []);
 
   useEffect(() => {
     if (selectedCountry) {
       // Fetch states when a country is selected
-      fetch(`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`)
-        .then(response => response.json())
-        .then(data => setStates(data))
-        .catch(error => console.error('Error fetching states:', error));
+      fetch(
+        `https://crio-location-selector.onrender.com/country=${selectedCountry}/states`
+      )
+        .then((response) => response.json())
+        .then((data) => setStates(data))
+        .catch((error) => console.error("Error fetching states:", error));
     } else {
       setStates([]);
-      setSelectedState('');
+      setSelectedState("");
     }
   }, [selectedCountry]);
 
   useEffect(() => {
     if (selectedState) {
       // Fetch cities when a state is selected
-      fetch(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`)
-        .then(response => response.json())
-        .then(data => setCities(data))
-        .catch(error => console.error('Error fetching cities:', error));
+      fetch(
+        `https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`
+      )
+        .then((response) => response.json())
+        .then((data) => setCities(data))
+        .catch((error) => console.error("Error fetching cities:", error));
     } else {
       setCities([]);
-      setSelectedCity('');
+      setSelectedCity("");
     }
   }, [selectedState, selectedCountry]);
 
@@ -61,11 +65,11 @@ const LocationSelector = () => {
       {/* Dropdowns */}
       <div
         style={{
-          display: 'flex',
-          gap: '16px',
-          alignItems: 'center',
-          marginBottom: '16px',
-          paddingLeft: 400 
+          display: "flex",
+          gap: "16px",
+          alignItems: "center",
+          marginBottom: "16px",
+          paddingLeft: 400,
         }}
       >
         {/* Country Dropdown */}
@@ -123,11 +127,14 @@ const LocationSelector = () => {
       </div>
 
       {/* Display Selected Location */}
-      {selectedCity && selectedState && selectedCountry && (
-        <p>
-          You Selected <strong>{selectedCity}</strong>, {selectedState}, {selectedCountry}
-        </p>
-      )}
+      <div>
+        {selectedCity && selectedState && selectedCountry && (
+          <p>
+            <strong>You Selected {selectedCity}</strong>, {selectedState},{" "}
+            {selectedCountry}
+          </p>
+        )}
+      </div>
     </div>
   );
 };
