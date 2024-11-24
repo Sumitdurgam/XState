@@ -56,7 +56,7 @@ const LocationSelector = () => {
 
   return (
     <div>
-      <h2>Location Selector</h2>
+      <h2>selected location</h2>
 
       {/* Dropdowns */}
       <div
