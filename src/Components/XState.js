@@ -56,16 +56,28 @@ const LocationSelector = () => {
 
   return (
     <div>
-      <h2>Select Location</h2>
+      <h2>Location Selector</h2>
 
-      {/* Dropdowns in a Single Row */}
-      <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '16px', paddingLeft: 400 }}>
+      {/* Dropdowns */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '16px',
+          alignItems: 'center',
+          marginBottom: '16px',
+          paddingLeft: 400 
+        }}
+      >
         {/* Country Dropdown */}
-        <div> 
+        <div>
           <br />
-          <select data-testid="country-dropdown" value={selectedCountry} onChange={handleCountryChange}>
+          <select
+            // data-testid="country-dropdown"
+            value={selectedCountry}
+            onChange={handleCountryChange}
+          >
             <option value="">Select a Country</option>
-            {countries.map(country => (
+            {countries.map((country) => (
               <option key={country} value={country}>
                 {country}
               </option>
@@ -74,34 +86,40 @@ const LocationSelector = () => {
         </div>
 
         {/* State Dropdown */}
-        {selectedCountry && (
-          <div>
-            <br />
-            <select data-testid="state-dropdown" value={selectedState} onChange={handleStateChange} disabled={!selectedCountry}>
-              <option value="">Select a State</option>
-              {states.map(state => (
-                <option key={state} value={state}>
-                  {state}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
+        <div>
+          <br />
+          <select
+            // data-testid="state-dropdown"
+            value={selectedState}
+            onChange={handleStateChange}
+            disabled={!selectedCountry} // Disabled until a country is selected
+          >
+            <option value="">Select a State</option>
+            {states.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* City Dropdown */}
-        {selectedState && (
-          <div>
-            <br />
-            <select data-testid="city-dropdown" value={selectedCity} onChange={handleCityChange} disabled={!selectedState}>
-              <option value="">Select a City</option>
-              {cities.map(city => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
+        <div>
+          <br />
+          <select
+            // data-testid="city-dropdown"
+            value={selectedCity}
+            onChange={handleCityChange}
+            disabled={!selectedState} // Disabled until a state is selected
+          >
+            <option value="">Select a City</option>
+            {cities.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* Display Selected Location */}
