@@ -130,7 +130,7 @@ const LocationSelector = () => {
       <div>
         {selectedCity && selectedState && selectedCountry && (
           <p>
-            <strong>You Selected {selectedCity}</strong>, {selectedState},{" "}
+            <strong> <span style={{ fontSize: "12px" }}>You Selected</span> {selectedCity}</strong>, {selectedState},
             {selectedCountry}
           </p>
         )}
